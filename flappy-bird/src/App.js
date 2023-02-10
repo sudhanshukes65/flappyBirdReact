@@ -45,6 +45,16 @@ function App() {
   }
   return ()=>clearInterval(objval);
   });
+//  collision   
+  useEffect(()=>{
+    let topObj = birdpos>=0 && birdpos< obj_height;
+    let botObj = birdpos<600 && birdpos>=  obj_height +80 ;
+    if(obj_pos> 10 && obj_pos < 10+100 && (topObj || botObj) ){
+      setBirdpos(300);
+      setobj_pos(400);
+      // setobj_pos(400)
+    }
+  });
 
   return (
   <Home onClick={clickhandler}>
@@ -85,24 +95,28 @@ const Background = styled.div `
   height: 600px;
   border: 2px solid black;
   position: relative;
+  overflow: hidden;
 `;
 const Bird = styled.div `
   background-image: url("./images/bd-nobg.png");
   position: absolute;
+  background-color: yellow;
   background-repeat: no-repeat;
   background-size: 30px 25px;
   width: 30px;
   height: 25px;
   top: ${(props)=> props.top}px;
-  left: 100px;
+  left: 80px;
 `;
 const Obj = styled.div `
   position: relative;
-  background-image: url("./images/pipee.png");
-  width: 100px;
+  background-image: url("./images/pipeee.png");
+  background-color: red;
+  width: 80px;
+
   height: ${(props)=> props.height}px;
   left:${(props)=> props.left}px;
-  background-size: 100px ${(props)=> props.height}px;
+  background-size: 80px ${(props)=> props.height}px;
   /* background-repeat: no-repeat; */
   top: ${(props)=> props.top}px;
   transform: rotate(${(props)=> props.deg}deg);
