@@ -100,7 +100,7 @@ const Background = styled.div `
 const Bird = styled.div `
   background-image: url("./images/bd-nobg.png");
   position: absolute;
-  background-color: yellow;
+  /* background-color: yellow; */
   background-repeat: no-repeat;
   background-size: 30px 25px;
   width: 30px;
@@ -111,7 +111,7 @@ const Bird = styled.div `
 const Obj = styled.div `
   position: relative;
   background-image: url("./images/pipeee.png");
-  background-color: red;
+  /* background-color: red; */
   width: 80px;
 
   height: ${(props)=> props.height}px;
