@@ -27,10 +27,42 @@ function App() {
   //   }
   //   else  setBirdpos((birdpos)=>birdpos);
   // }
+  const [obj_height,setobj_height]= useState(300);
+  const [obj_pos,setobj_pos] = useState(400)
+  // const bottomObj =400 - 20 - obj_height;
+
+  useEffect(()=>{
+    let objval;
+    if(obj_pos>=-100)
+      {
+      objval = setInterval(() => {
+      setobj_pos((obj_pos)=>obj_pos-6);
+    }, 24);
+  }
+  else{
+    setobj_pos(400);
+    setobj_height(Math.floor(Math.random()*400));
+  }
+  return ()=>clearInterval(objval);
+  });
+
   return (
   <Home onClick={clickhandler}>
     <Background>
+      <Obj
+        height ={obj_height}
+        left = {obj_pos}
+        top={0}
+        deg ={180}
+      />
       <Bird top = {birdpos} />
+      <Obj
+        height ={ 600 - obj_height - 100}
+        left = {obj_pos}
+        top={100}
+        deg ={0}
+      />
+      
     </Background>
   </Home>
   );
@@ -58,10 +90,20 @@ const Bird = styled.div `
   background-image: url("./images/bd-nobg.png");
   position: absolute;
   background-repeat: no-repeat;
-  /* background-color: blue; */
   background-size: 30px 25px;
   width: 30px;
   height: 25px;
   top: ${(props)=> props.top}px;
   left: 100px;
+`;
+const Obj = styled.div `
+  position: relative;
+  background-image: url("./images/pipee.png");
+  width: 100px;
+  height: ${(props)=> props.height}px;
+  left:${(props)=> props.left}px;
+  background-size: 100px ${(props)=> props.height}px;
+  /* background-repeat: no-repeat; */
+  top: ${(props)=> props.top}px;
+  transform: rotate(${(props)=> props.deg}deg);
 `;
