@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 function App() {
 
+  const [score, setscore]= useState(0);
+
   const [birdpos,setBirdpos] = useState(300);
   let birdval;
   useEffect(()=>{
@@ -31,6 +33,8 @@ function App() {
   const [obj_pos,setobj_pos] = useState(400)
   // const bottomObj =400 - 20 - obj_height;
 
+
+// pipe walking effect
   useEffect(()=>{
     let objval;
     if(obj_pos>=-100)
@@ -41,6 +45,7 @@ function App() {
   }
   else{
     setobj_pos(400);
+    setscore((score) => score+1);
     setobj_height(Math.floor(Math.random()*400));
   }
   return ()=>clearInterval(objval);
@@ -52,12 +57,14 @@ function App() {
     if(obj_pos> 10 && obj_pos < 10+100 && (topObj || botObj) ){
       setBirdpos(300);
       setobj_pos(400);
-      // setobj_pos(400)
+      setscore(0);
     }
   });
 
+
   return (
   <Home onClick={clickhandler}>
+    <div> score : {score}</div>
     <Background>
       <Obj
         height ={obj_height}
