@@ -88,7 +88,7 @@ const Home = styled.div`
   justify-content: center;
 `;
 const Background = styled.div `
-  background-image: url("./images/background-Day.png");
+  background-image: url("./images/background-day.png");
   background-repeat: no-repeat;
   background-size: 400px 600px;
   width: 400px;
